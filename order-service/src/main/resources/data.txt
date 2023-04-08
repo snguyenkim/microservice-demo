@@ -1,0 +1,22 @@
+Place Order
+-----------
+POST : http://localhost:9002/api/order
+
+{
+    "orderLineItemsDtoList":
+    [
+        {
+            "sku": "iphone-001",
+            "quantity": 2
+        },
+        {
+            "sku": "monitor-02",
+            "quantity": 1
+        }
+    ]
+}
+
+Find by Id
+----------
+GET: http://localhost:9002/api/order/1
+

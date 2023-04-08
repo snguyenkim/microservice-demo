@@ -1,0 +1,26 @@
+
+Save Inventory Batch
+--------------------
+POST: http://localhost:9001/api/inventory-batch
+[
+    {
+        "sku": "iphone-001",
+        "name": "Samsung Galaxy 22",
+        "quantity": 20
+    },
+    {
+        "sku": "game-001",
+        "name": "X-Plane 11",
+        "quantity": 5
+    },
+    {
+        "sku": "monitor-02",
+        "name": "Dell 34 inches Cuved Monitor",
+        "quantity": 5
+    },
+    {
+        "sku": "monitor-01",
+        "name": "Alien 34 inches Cuved Monitor",
+        "quantity": 5
+    }
+]
