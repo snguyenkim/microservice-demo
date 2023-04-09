@@ -9,11 +9,52 @@ Default Log : Logback
 (1) Discovery Server/Client & Load Balance
 Netflix Eureka
 -Eureka Server
--Eureka Client
+-Eureka Client (@LoadBalanced)
 
 (2) Config Server
-@SpringBootApplication
-@EnableConfigServer
+    - To store/provide microservice-name.yml on Git repo. back to microservices
+        . Spring Cloud Configuration Server/ Apache Zookeeper / Hashicorp Consul
+
+    @SpringBootApplication
+    @EnableConfigServer
+    - Externalized             (Property files)
+    - Environment Specific     (Spring profile)
+    - Consistency               (Spring cloud config server)     
+    - Version history           (Git repo resource)
+    - Real-time management      (Refreshing properties at runtime)
+        . Add Actuator
+            To refresh @RefreshScope (at Config Client)
+            POST: http://localhost:8080/actuator/refresh
+
+        . Add property:
+            management.endpoints.web.exposure.include="*"
+        . Add @RefreshScope to (Class level) where the code wants to get the properties 
+
+    https://github.com/snguyenkim/config-repo.git
+    ssh:git@github.com:snguyenkim/config-repo.git
+
+    spring.cloud.config.server.git.uri=ssh://localhost/config-repo
+    spring.cloud.config.server.git.clone-on-start=true
+    spring.security.user.name=root
+    spring.security.user.password=s3cr3t
+
+        /{application}/{profile}[/{label}]
+        /{application}-{profile}.yml
+        /{application}-{profile}.properties
+        /{label}/{application}-{profile}.yml
+        /{label}/{application}-{profile}.properties
+        
+        The {label} placeholder refers to a Git branch, 
+        {application} to the client's application name, and 
+        the {profile} to the client's current active application profile.
+
+
+    (*) Config Client
+        spring-cloud-starter-config
+        @RefreshScope
+
+    Properties:
+        spring.cloud.config.uri = <Config Server>
 
 ---
 
@@ -82,6 +123,10 @@ return externalAPICaller.callApi();
 public String fallbackAfterRetry(Exception ex) {
 return "all retries have exhausted";
 }
+
+#### Microservices configuration best practices
+https://www.youtube.com/watch?v=AiGCx0raQfs
+
 
 #### 6 hours
 
@@ -217,7 +262,26 @@ Source Code - https://github.com/SaiUpadhyayula/spring-boot-microservices
             public fallbackOrderPlace
 
         - Service
+            CircuitBreakerConfig config = CircuitBreakerConfig
+                .custom()
+                .slidingWindowType(SlidingWindowType.COUNT_BASED)
+                .slidingWindowSize(10)
+                .failureRateThreshold(70.0f)
+                .build();
 
+            CircuitBreakerRegistry registry = CircuitBreakerRegistry.of(config);
+            CircuitBreaker circuitBreaker = registry.circuitBreaker("flightSearchService");
+
+            Supplier<List<Flight>> flightsSupplier = () -> service.searchFlights(request);
+            Supplier<List<Flight>> decoratedFlightsSupplier = circuitBreaker.decorateSupplier(flightsSupplier);
+            for (int i=0; i<20; i++) {
+                try {
+                    System.out.println(decoratedFlightsSupplier.get());
+                }
+                catch (...) {
+                    // Exception handling
+                }
+            }
 
         # resielence4j Timeout
         @TimeLimiter(name="inventory")
