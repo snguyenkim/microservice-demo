@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "e1332b78-1bac-447e-bc13-6a6bb5955b8f",
+		"name": "Micro-Services Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16858693"
+	},
+	"item": [
+		{
+			"name": "Get All Inventory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9001/api/inventory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"inventory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Inventory by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9001/api/inventory/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"inventory",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Inventory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sku\": \"001\",\n    \"name\": \"Alien 34 inches Cuved Monitor\",\n    \"quantity\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9001/api/inventory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"inventory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Inventory Batch",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"sku\": \"iphone-001\",\n        \"name\": \"Samsung Galaxy 22\",\n        \"quantity\": 20\n    },\n    {\n        \"sku\": \"game-001\",\n        \"name\": \"X-Plane 11\",\n        \"quantity\": 5\n    },\n    {\n        \"sku\": \"monitor-02\",\n        \"name\": \"Dell 34 inches Cuved Monitor\",\n        \"quantity\": 5\n    },\n    {\n        \"sku\": \"monitor-01\",\n        \"name\": \"Alien 34 inches Cuved Monitor\",\n        \"quantity\": 5\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9001/api/inventory-batch",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"inventory-batch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inventory isInStock",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"sku\": \"iphone-001\",\n        \"name\": \"Samsung Galaxy 22\",\n        \"quantity\": 201\n    },\n    {\n        \"sku\": \"game-001\",\n        \"name\": \"X-Plane 11\",\n        \"quantity\": 5\n    },\n    {\n        \"sku\": \"monitor-02\",\n        \"quantity\": 5\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9001/api/inventory-is-in-stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"inventory-is-in-stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inventory findBySkuList",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"sku\": \"iphone-001\",\n        \"name\": \"Samsung Galaxy 22\",\n        \"quantity\": 20\n    },\n    {\n        \"sku\": \"game-001\",\n        \"name\": \"X-Plane 11\",\n        \"quantity\": 5\n    },\n    {\n        \"sku\": \"monitor-02\",\n        \"name\": \"Dell 34 inches Cuved Monitor\",\n        \"quantity\": 5\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9001/api/inventory-sku-list-path/iphone-001,game-001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"inventory-sku-list-path",
+						"iphone-001,game-001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inventory findBySkuList RequestParam",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"sku\": \"iphone-001\",\n        \"name\": \"Samsung Galaxy 22\",\n        \"quantity\": 20\n    },\n    {\n        \"sku\": \"game-001\",\n        \"name\": \"X-Plane 11\",\n        \"quantity\": 5\n    },\n    {\n        \"sku\": \"monitor-02\",\n        \"name\": \"Dell 34 inches Cuved Monitor\",\n        \"quantity\": 5\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9001/api/inventory-sku-list-request?skus=iphone-001,game-001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"inventory-sku-list-request"
+					],
+					"query": [
+						{
+							"key": "skus",
+							"value": "iphone-001,game-001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderLineItemsDtoList\":\n    [\n        {\n            \"sku\": \"game-001\",\n            \"quantity\": 1\n        },\n        {\n            \"sku\": \"monitor-02\",\n            \"quantity\": 1\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Order by Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    [\n        {\n            \"sku\": \"iphone-001\",\n            \"quantity\": 2\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/order/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"order",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Order by Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    [\n        {\n            \"sku\": \"iphone-001\",\n            \"quantity\": 2\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/order/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"order",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

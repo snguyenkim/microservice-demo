@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,8 +19,8 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
     public Order findById(Long id) {
-        Order order = orderRepository.findById(id).get();
-        return order;
+        Optional<Order> order = orderRepository.findById(id);
+        return order.orElseGet(Order::new);
     }
 
     public String placeOrder(OrderRequest orderRequest) {
@@ -59,4 +60,12 @@ public class OrderService {
         }
     }
 
+    public String deleteById(Long id) {
+        if (orderRepository.existsById(id)) {
+            orderRepository.deleteById(id);
+            return "Order deleted !";
+        }else {
+            throw new IllegalArgumentException("Order is not found, please try again later");
+        }
+    }
 }
