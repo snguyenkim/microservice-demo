@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +18,10 @@ public class OrderService {
 
     private final WebClient.Builder webClientBuilder;
     private final OrderRepository orderRepository;
+
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
 
     public Order findById(Long id) {
         Optional<Order> order = orderRepository.findById(id);

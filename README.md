@@ -69,14 +69,25 @@ in file:///C:/configprop/ place your client application - application.properties
 - order-service.properties
 
 (2) API Gateway - Spring Cloud Gateway
+    What is API gateway in spring boot?
+    Spring Cloud Gateway works by sitting between your API clients and your backend services. 
+    It acts as a reverse proxy, routing requests from clients to the appropriate backend service 
+    and then returning the service's response back to the client.
+    
+NOTE: WebFlux
+    Spring Cloud Gateway provides a library for building an API Gateway on top of Spring WebFlux.
+
 Abilities:
 . Routing based on Request header (/api/inventory , /api/order, /eureka, ...)
-. Authentication
+. Authentication 
+    -Authentication verifies the identity of a user or service, 
+    -Authorization determines their access rights.
+
 . Security (JWT, ...)
 . Load Balancing
 . SSL Termination (Meaning terminate SSL when using internal API)
 
-    Features:
+Features:
     1. Route:
     The basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates,
     and a collection of filters. A route is matched if the aggregate predicate is true.
@@ -89,7 +100,8 @@ Abilities:
 
 (3) Circuit Breaker
 Resilience4J, Netflix Hytrix
-Use of the Circuit Breaker pattern can allow a microservice to continue operating when a related service fails, preventing the failure from cascading and giving the failing service time to recover.
+Use of the Circuit Breaker pattern can allow a microservice to continue operating when a related service fails, 
+preventing the failure from cascading and giving the failing service time to recover.
 
 @CircuitBreaker : to apply circuit breaker rules
 resilience4j.circuitbreaker.instances.<service-name>.failure-rate-threshold=50

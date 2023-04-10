@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -14,6 +15,13 @@ import java.util.Optional;
 public class OrderController {
 
   private final OrderService orderService;
+
+  // For testing API Gateway predicates property[0]=Path=/a[i/order
+  @GetMapping("/all")
+  @ResponseStatus(HttpStatus.OK)
+  public List<Order> getAll() {
+    return orderService.findAll();
+  }
 
   @GetMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
