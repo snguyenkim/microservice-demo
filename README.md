@@ -131,17 +131,6 @@ public String fallbackAfterRetry(Exception ex) {
 return "all retries have exhausted";
 }
 
-#### Microservices configuration best practices
-https://www.youtube.com/watch?v=AiGCx0raQfs
-
-
-#### 6 hours
-
-https://www.youtube.com/watch?v=mPPhcU7oWDU
-
-💾 Github - https://github.com/SaiUpadhyayula
-
-Source Code - https://github.com/SaiUpadhyayula/spring-boot-microservices
 
 #### Service Discovery - spring-cloud-netflix Eureka Server.
 
