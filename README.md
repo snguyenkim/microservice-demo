@@ -1,8 +1,3 @@
-https://wd1.myworkdaysite.com/recruiting/fmr/FidelityCareers/userHome
-https://wd1.myworkdaysite.com/recruiting/fmr/FidelityCareers/d19434d8cff21000c308cedfaf0e0000/myInterviewSchedule
-https://fmr.zoom.us/j/93072913975?pwd=UEozNmt5WnJ6TWFUQnVmbzR5RkNUdz09
-
-Default Log : Logback
 
 #### Micro Services
 
